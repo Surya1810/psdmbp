@@ -30,7 +30,7 @@
     <link rel="stylesheet"
         href="{{ asset('assets/adminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('assets/AdminLTE/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/adminLTE/dist/css/adminlte.min.css') }}">
     <!-- Our style -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
@@ -225,16 +225,16 @@
     <!-- REQUIRED SCRIPTS -->
 
     <!-- jQuery -->
-    <script src="{{ asset('assets/AdminLTE/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/adminLTE/plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap 4 -->
-    <script src="{{ asset('assets/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- Select2 -->
     <script src="{{ asset('assets/adminLTE/plugins/select2/js/select2.full.min.js') }}"></script>
 
     @stack('scripts')
 
-    <!-- AdminLTE App -->
-    <script src="{{ asset('assets/AdminLTE/dist/js/adminlte.min.js') }}"></script>
+    <!-- adminLTE App -->
+    <script src="{{ asset('assets/adminLTE/dist/js/adminlte.min.js') }}"></script>
 
     <!-- Link Active -->
     <script>
