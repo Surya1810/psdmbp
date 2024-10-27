@@ -34,29 +34,26 @@ body::-webkit-scrollbar {
 
 /* Change pagination link colors */
 .pagination .page-link {
-    color: #ffc107; /* Yellow text for pagination links */
-    background-color: #fff; /* White background for inactive links */
-    border-color: #ffc107; /* Yellow border for inactive links */
+    color: #ffc107 !important; /* Yellow text for pagination links */
+    border-color: #ffc107 !important; /* Yellow border for inactive links */
 }
 
 .pagination .page-link:hover {
-    color: #ffc107; /* Yellow text on hover */
+    color: #ffc107 !important; /* Yellow text on hover */
     background-color: #ffe082; /* Lighter yellow background on hover */
-    border-color: #ffc107; /* Yellow border on hover */
+    border-color: #ffc107 !important; /* Yellow border on hover */
 }
 
 /* Active page */
 .pagination .page-item.active .page-link {
-    color: #fff; /* White text for active page */
-    background-color: #ffc107; /* Yellow background for active page */
-    border-color: #ffc107; /* Yellow border for active page */
+    color: #000 !important; /* White text for active page */
+    background-color: #ffc107 !important; /* Yellow background for active page */
+    border-color: #ffc107 !important; /* Yellow border for active page */
 }
 
 /* Disabled page */
 .pagination .page-item.disabled .page-link {
-    color: #999; /* Gray text for disabled */
-    background-color: #f9f9f9; /* Light background for disabled */
-    border-color: #dcdcdc; /* Light border for disabled */
+    color: #999 !important; /* Gray text for disabled */
 }
 
 /* Basic form control customization */
@@ -71,10 +68,10 @@ body::-webkit-scrollbar {
 }
 
 /* Placeholder text color */
-.form-control::placeholder {
-    color: #ffc107; /* Yellow placeholder text */
-    opacity: 0.7; /* Slightly transparent for a softer look */
-}
+/* .form-control::placeholder {
+    color: #ffc107; 
+    opacity: 0.7;
+} */
 
 /* Select element customization */
 .form-select {

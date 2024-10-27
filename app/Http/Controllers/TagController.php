@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TagController extends Controller
 {
@@ -13,8 +14,11 @@ class TagController extends Controller
     public function index()
     {
         $tags = Tag::all();
+        $owned = Tag::where('department_id', Auth::user()->department_id)->get();
+        $total_tags = Tag::all()->count();
+        $total_owned = Tag::where('department_id', Auth::user()->department_id)->count();
 
-        return view('admin.tag.index', compact('tags'));
+        return view('admin.tag.index', compact('tags', 'owned', 'total_tags', 'total_owned'));
     }
 
     /**

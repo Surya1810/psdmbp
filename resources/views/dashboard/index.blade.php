@@ -82,14 +82,14 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>{{ $count_department }}</h3>
+                            <h3>{{ $count_tags }}</h3>
 
-                            <p>Department</p>
+                            <p>RFID Tags</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-pie-graph"></i>
                         </div>
-                        <a href="{{ route('department.index') }}" class="small-box-footer">More info <i
+                        <a href="{{ route('tag.index') }}" class="small-box-footer">More info <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>

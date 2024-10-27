@@ -100,7 +100,8 @@ class DocumentController extends Controller
     {
         $history = Document::with('movements.fromBuilding', 'movements.toBuilding')
             ->findOrFail($id);
+        $document = Document::find($id);
 
-        return view('document.history', compact('history'));
+        return view('document.history', compact('history', 'document'));
     }
 }

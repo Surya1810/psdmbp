@@ -8,6 +8,11 @@ class Tag extends Model
 {
     public function document()
     {
-        return $this->belongsTo(Document::class);
+        return $this->hasOne(Document::class);
+    }
+
+    public function department()
+    {
+        return $this->hasOne(Department::class);
     }
 }

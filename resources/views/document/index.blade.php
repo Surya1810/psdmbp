@@ -52,25 +52,27 @@
                                 <thead class="table-light bg-warning">
                                     <tr>
                                         <th>
-                                            Name
-                                        </th>
-
-                                        <th style="width: 10%">
                                             Number
                                         </th>
-                                        <th style="width: 15%">
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
                                             Created by
                                         </th>
-                                        <th style="width: 15%">
+                                        <th>
+                                            Department
+                                        </th>
+                                        <th>
                                             Last Checked
                                         </th>
-                                        <th style="width: 10%">
+                                        <th>
                                             Status
                                         </th>
-                                        <th style="width: 15%">
+                                        <th>
                                             RFID Number
                                         </th>
-                                        <th style="width: 10%">
+                                        <th style="width: 15%">
                                             Action
                                         </th>
                                     </tr>
@@ -78,14 +80,20 @@
                                 <tbody>
                                     @foreach ($documents as $data)
                                         <tr>
+                                            <td>{{ $data->number }}</td>
                                             <td>{{ $data->name }}</td>
+                                            <td>{{ $data->created_by->name }}</td>
+                                            <td>{{ $data->created_by->department->name }}</td>
+                                            <td></td>
+                                            <td>{{ $data->status }}</td>
+                                            <td>{{ $data->tag->number }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-sm btn-warning rounded-partner"
                                                     data-toggle="modal" data-target="#editDocument{{ $data->id }}">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </button>
                                                 <a href="{{ route('document.history', $data->id) }}"
-                                                    class="btn btn-sm btn-warning rounded-partner">
+                                                    class="btn btn-sm btn-info rounded-partner">
                                                     <i class="fas fa-solid fa-clock-rotate-left"></i>
                                                 </a>
                                                 <button class="btn btn-sm btn-danger rounded-partner"
@@ -206,7 +214,7 @@
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
-                // "scrollX": true,
+                "scrollX": true,
                 // width: "700px",
                 // columnDefs: [{
                 //     className: 'dtr-control',

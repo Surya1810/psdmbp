@@ -31,24 +31,103 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+            @auth
+                @if (auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card card-outline rounded-partner card-warning">
+                                <div class="card-header">
+                                    <div class="row align-items-center">
+                                        <div class="col-6">
+                                            <h3 class="card-title">All Tag <span
+                                                    class="badge badge-warning">{{ $total_tags }}</span></h3>
+                                        </div>
+                                        @auth
+                                            @if (auth()->user()->role_id == 1)
+                                            @endif
+                                        @endauth
+                                        <div class="col-6">
+                                            <button type="button" class="float-right btn btn-sm btn-warning rounded-partner"
+                                                data-toggle="modal" data-target="#addTag">
+                                                <i class="fas fa-plus"></i> Import RFID Tag
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body table-responsive">
+                                    <table id="TagTable" class="table table-bordered text-sm">
+                                        <thead class="table-light bg-warning">
+                                            <tr>
+                                                <th>
+                                                    RFID Number
+                                                </th>
+                                                <th>
+                                                    Status
+                                                </th>
+                                                <th>
+                                                    Document Number
+                                                </th>
+                                                <th>
+                                                    Department
+                                                </th>
+                                                <th style="width: 10%">
+                                                    Action
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($tags as $data)
+                                                <tr>
+                                                    <td>{{ $data->number }}</td>
+                                                    <td>{{ $data->status }}</td>
+                                                    <td>
+                                                        @if (!is_null($data->document))
+                                                            {{ $data->document->number }}
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if (is_null($data->department_id))
+                                                            -
+                                                        @else
+                                                            {{ $data->department->name }}
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-danger rounded-partner"
+                                                            onclick="deleteTag({{ $data->id }})"><i
+                                                                class="fas fa-trash"></i></button>
+                                                        <form id="delete-form-{{ $data->id }}"
+                                                            action="{{ route('tag.destroy', $data->id) }}" method="POST"
+                                                            style="display: none;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endauth
             <div class="row">
                 <div class="col-12">
                     <div class="card card-outline rounded-partner card-warning">
                         <div class="card-header">
                             <div class="row align-items-center">
                                 <div class="col-6">
-                                    <h3 class="card-title">All Tag</h3>
-                                </div>
-                                <div class="col-6">
-                                    <button type="button" class="float-right btn btn-sm btn-warning rounded-partner"
-                                        data-toggle="modal" data-target="#addTag">
-                                        <i class="fas fa-plus"></i> Add New
-                                    </button>
+                                    <h3 class="card-title">Owned Tag <span
+                                            class="badge badge-warning">{{ $total_owned }}</span></h3>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body table-responsive">
-                            <table id="TagTable" class="table table-bordered text-sm">
+                            <table id="OwnedTable" class="table table-bordered text-sm">
                                 <thead class="table-light bg-warning">
                                     <tr>
                                         <th style="width: 10%">
@@ -63,16 +142,13 @@
                                         <th>
                                             Document Number
                                         </th>
-                                        <th>
-                                            Last Checked
-                                        </th>
                                         <th style="width: 10%">
                                             Action
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($tags as $data)
+                                    @foreach ($owned as $data)
                                         <tr>
                                             <td>{{ $data->id }}</td>
                                             <td>{{ $data->name }}</td>
@@ -117,6 +193,25 @@
     <script type="text/javascript">
         $(function() {
             $('#TagTable').DataTable({
+                "paging": true,
+                'processing': true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+                // "scrollX": true,
+                // width: "700px",
+                // columnDefs: [{
+                //     className: 'dtr-control',
+                //     orderable: false,
+                //     targets: -8
+                // }]
+            });
+        });
+        $(function() {
+            $('#OwnedTable').DataTable({
                 "paging": true,
                 'processing': true,
                 "lengthChange": true,

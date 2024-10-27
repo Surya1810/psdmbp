@@ -15,4 +15,9 @@ class Department extends Model
     {
         return $this->hasManyThrough(Document::class, DocumentMovement::class, 'to_department_id', 'id', 'id', 'document_id');
     }
+
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
+    }
 }

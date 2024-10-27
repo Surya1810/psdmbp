@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tags', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedBigInteger('document_id')->nullable();
+            $table->id();
             $table->string('number');
-            $table->string('status')->default(true);
+            $table->unsignedBigInteger('department_id')->nullable();
+            $table->string('status')->default('Available');
             $table->timestamps();
         });
     }
