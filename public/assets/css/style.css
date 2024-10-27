@@ -1,0 +1,140 @@
+* {
+    scroll-behavior: smooth;
+    font-family: "Montserrat", sans-serif;
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+html {
+    height: -webkit-fill-available;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+::-moz-selection {
+    /* Code for Firefox */
+    background: #ffc107;
+}
+
+::selection {
+    background: #ffc107;
+}
+
+/* Active */
+/* .sidebar-menu .nav-item .nav-link.active {
+    background-color: #ffc107 !important;
+    color: #010101 !important;
+    font-weight: 600;
+} */
+.info a:hover {
+    color: #ffc107 !important;
+}
+
+/* Change pagination link colors */
+.pagination .page-link {
+    color: #ffc107; /* Yellow text for pagination links */
+    background-color: #fff; /* White background for inactive links */
+    border-color: #ffc107; /* Yellow border for inactive links */
+}
+
+.pagination .page-link:hover {
+    color: #ffc107; /* Yellow text on hover */
+    background-color: #ffe082; /* Lighter yellow background on hover */
+    border-color: #ffc107; /* Yellow border on hover */
+}
+
+/* Active page */
+.pagination .page-item.active .page-link {
+    color: #fff; /* White text for active page */
+    background-color: #ffc107; /* Yellow background for active page */
+    border-color: #ffc107; /* Yellow border for active page */
+}
+
+/* Disabled page */
+.pagination .page-item.disabled .page-link {
+    color: #999; /* Gray text for disabled */
+    background-color: #f9f9f9; /* Light background for disabled */
+    border-color: #dcdcdc; /* Light border for disabled */
+}
+
+/* Basic form control customization */
+.form-control {
+    border-color: #ffc107; /* Yellow border */
+    box-shadow: none; /* Remove default shadow */
+}
+
+.form-control:focus {
+    border-color: #ffc107; /* Yellow border on focus */
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25); /* Yellow shadow on focus */
+}
+
+/* Placeholder text color */
+.form-control::placeholder {
+    color: #ffc107; /* Yellow placeholder text */
+    opacity: 0.7; /* Slightly transparent for a softer look */
+}
+
+/* Select element customization */
+.form-select {
+    border-color: #ffc107; /* Yellow border for select */
+    box-shadow: none;
+}
+
+.form-select:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25); /* Yellow shadow for select on focus */
+}
+
+/* Custom styles for checkboxes and radio buttons */
+.form-check-input:checked {
+    background-color: #ffc107; /* Yellow background for checked state */
+    border-color: #ffc107; /* Yellow border for checked state */
+}
+
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25); /* Yellow shadow for focus state */
+}
+
+.rounded-partner {
+    border-radius: 20px;
+}
+
+/* Sweetalert custom color */
+.colored-toast.swal2-icon-success {
+    background-color: #a5dc86 !important;
+}
+
+.colored-toast.swal2-icon-error {
+    background-color: #f27474 !important;
+}
+
+.colored-toast.swal2-icon-warning {
+    background-color: #f8bb86 !important;
+}
+
+.colored-toast.swal2-icon-info {
+    background-color: #3fc3ee !important;
+}
+
+.colored-toast.swal2-icon-question {
+    background-color: #87adbd !important;
+}
+
+.colored-toast .swal2-title {
+    color: white;
+}
+
+.colored-toast .swal2-close {
+    color: white;
+}
+
+.colored-toast .swal2-html-container {
+    color: white;
+}
+
+/* Cell color */
+.bg-success-2 {
+    background-color: #b6d7a8;
+}
