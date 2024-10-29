@@ -24,7 +24,7 @@ Route::put('/profile/update/{id}', [ProfileController::class, 'update'])->name('
 Route::put('/profile/password/{id}', [ProfileController::class, 'password'])->name('profile.password');
 Route::delete('/profile/delete/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-// --------------------------Admin-----------------------------
+// --------------------------Super Admin & Admin-----------------------------
 // User
 Route::resource('user', UserController::class);
 // Department
@@ -34,11 +34,12 @@ Route::resource('position', PositionController::class);
 // RFID
 Route::resource('tag', TagController::class);
 
-// --------------------------Distributor-----------------------------
-
-
 // --------------------------User-----------------------------
-Route::resource('document', DocumentController::class);
-Route::get('/document/my-document', [DocumentController::class, 'my_document'])->name('document.my');
-Route::get('/document/waiting-review', [DocumentController::class, 'waiting_review'])->name('document.waiting');
+Route::resource('dokumen', DocumentController::class);
+Route::get('/keluar', [DocumentController::class, 'keluar'])->name('document.keluar');
+Route::get('/masuk', [DocumentController::class, 'masuk'])->name('document.masuk');
+Route::get('/tersimpan', [DocumentController::class, 'tersimpan'])->name('document.tersimpan');
+
+
+Route::get('/history', [DocumentController::class, 'index'])->name('history.index');
 Route::get('/document/{id}/history', [DocumentController::class, 'history'])->name('document.history');

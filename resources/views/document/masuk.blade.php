@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Document History
+    Dokumen Masuk
 @endsection
 
 @push('css')
@@ -18,10 +18,10 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Document History</h1>
+                    <h1>Dokumen Masuk</h1>
                     <ol class="breadcrumb text-black-50">
                         <li class="breadcrumb-item"><a class="text-warning" href="{{ route('dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item active"><strong>Document History</strong></li>
+                        <li class="breadcrumb-item active"><strong>Dokumen Masuk</strong></li>
                     </ol>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                         <div class="card-header">
                             <div class="row align-items-center">
                                 <div class="col-6">
-                                    <h3 class="card-title">Document History</h3>
+                                    <h3 class="card-title">Dokumen Masuk</h3>
                                 </div>
                             </div>
                         </div>
@@ -46,27 +46,24 @@
                                 <thead class="table-light bg-warning">
                                     <tr>
                                         <th>
-                                            Number
+                                            RFID Number
                                         </th>
                                         <th>
-                                            Name
+                                            Nomor
                                         </th>
                                         <th>
-                                            Created by
+                                            Nama
                                         </th>
                                         <th>
-                                            Department
+                                            Dibuat Oleh
                                         </th>
                                         <th>
-                                            Last Checked
+                                            Departmen
                                         </th>
                                         <th>
                                             Status
                                         </th>
                                         <th>
-                                            RFID Number
-                                        </th>
-                                        <th style="width: 15%">
                                             Action
                                         </th>
                                     </tr>
@@ -74,18 +71,17 @@
                                 <tbody>
                                     @foreach ($documents as $data)
                                         <tr>
+                                            <td>{{ $data->tag->number }}</td>
                                             <td>{{ $data->number }}</td>
                                             <td>{{ $data->name }}</td>
                                             <td>{{ $data->created_by->name }}</td>
                                             <td>{{ $data->created_by->department->name }}</td>
-                                            <td></td>
                                             <td>{{ $data->status }}</td>
-                                            <td>{{ $data->tag->number }}</td>
                                             <td>
-                                                <a href="{{ route('document.history', $data->id) }}"
-                                                    class="btn btn-sm btn-info rounded-partner">
-                                                    <i class="fas fa-solid fa-clock-rotate-left"></i>
-                                                </a>
+                                                <button type="button" class="btn btn-sm btn-success rounded-partner"
+                                                    data-toggle="modal" data-target="#addTujuan{{ $data->id }}">
+                                                    <i class="fas fa-arrow-right"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -98,59 +94,26 @@
         </div>
     </section>
 
-    <!-- Modal Add Document-->
-    <div class="modal fade" id="addDocument" tabindex="-1" aria-labelledby="addDocumentLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addDocumentLabel">Add New Document</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ route('document.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="name" class="mb-0 form-label col-form-label-sm">Name</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                                name="name" placeholder="Enter document name" value="{{ old('name') }}">
-                            @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-warning rounded-partner">Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Edit Document-->
     @foreach ($documents as $data)
-        <div class="modal fade" id="editDocument{{ $data->id }}" tabindex="-1" aria-labelledby="editDocumentLabel"
+        <!-- Modal Add Tujuan-->
+        <div class="modal fade" id="addTujuan{{ $data->id }}" tabindex="-1" aria-labelledby="addTujuanLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editDocumentLabel">Edit Document</h5>
+                        <h5 class="modal-title" id="addTujuanLabel">Add New Tujuan</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <form action="{{ route('document.update', $data->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="name" class="mb-0 form-label col-form-label-sm">Name</label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                    id="name" name="name" placeholder="Enter document name"
-                                    value="{{ $data->name }}">
+                                    id="name" name="name" placeholder="Enter Tujuan name"
+                                    value="{{ old('name') }}">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -159,7 +122,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-warning rounded-partner">Update</button>
+                            <button type="submit" class="btn btn-warning rounded-partner">Save</button>
                         </div>
                     </form>
                 </div>
@@ -185,7 +148,7 @@
 
     <script type="text/javascript">
         $(function() {
-            $('#DocumentTable').DataTable({
+            $('#TujuanTable').DataTable({
                 "paging": true,
                 'processing': true,
                 "lengthChange": true,
@@ -203,28 +166,5 @@
                 // }]
             });
         });
-
-        function deleteDocument(id) {
-            Swal.fire({
-                title: 'Are you sure?',
-                icon: 'warning',
-                showCancelButton: false,
-                confirmButtonColor: '#d33',
-                confirmButtonText: 'Delete'
-            }).then((result) => {
-                if (result.value) {
-                    event.preventDefault();
-                    document.getElementById('delete-form-' + id).submit();
-                } else if (
-                    result.dismiss === swal.DismissReason.cancel
-                ) {
-                    swal(
-                        'Cancelled',
-                        'Your data is safe !',
-                        'error'
-                    )
-                }
-            })
-        }
     </script>
 @endpush

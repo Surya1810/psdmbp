@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
             'role_id' => '2',
             'position_id' => '1',
             'department_id' => '2',
-            'name' => 'BMN',
+            'name' => 'Surya Dinarta',
             'email' => 'BMN@gmail.com',
             'password' => bcrypt('123'),
         ]);
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
             'role_id' => '3',
             'position_id' => '1',
             'department_id' => '3',
-            'name' => 'Pengadaan',
+            'name' => 'Encep Zainul',
             'email' => 'Pengadaan@gmail.com',
             'password' => bcrypt('123'),
         ]);
@@ -43,7 +43,7 @@ class UserSeeder extends Seeder
             'role_id' => '3',
             'position_id' => '1',
             'department_id' => '4',
-            'name' => 'PPK',
+            'name' => 'Gogon Gorbacep',
             'email' => 'PPK@gmail.com',
             'password' => bcrypt('123'),
         ]);
@@ -51,7 +51,7 @@ class UserSeeder extends Seeder
             'role_id' => '3',
             'position_id' => '1',
             'department_id' => '5',
-            'name' => 'Keuangan',
+            'name' => 'Dani Nugraha',
             'email' => 'Keuangan@gmail.com',
             'password' => bcrypt('123'),
         ]);
@@ -59,7 +59,7 @@ class UserSeeder extends Seeder
             'role_id' => '3',
             'position_id' => '1',
             'department_id' => '6',
-            'name' => 'PUM',
+            'name' => 'Chuz',
             'email' => 'PUM@gmail.com',
             'password' => bcrypt('123'),
         ]);
@@ -67,7 +67,7 @@ class UserSeeder extends Seeder
             'role_id' => '3',
             'position_id' => '1',
             'department_id' => '7',
-            'name' => 'Bidang_1',
+            'name' => 'Firkie',
             'email' => 'Bidang_1@gmail.com',
             'password' => bcrypt('123'),
         ]);
@@ -75,7 +75,7 @@ class UserSeeder extends Seeder
             'role_id' => '3',
             'position_id' => '1',
             'department_id' => '8',
-            'name' => 'Bidang 2',
+            'name' => 'Hermansyah Sujana',
             'email' => 'Bidang_2@gmail.com',
             'password' => bcrypt('123'),
         ]);
@@ -83,7 +83,7 @@ class UserSeeder extends Seeder
             'role_id' => '3',
             'position_id' => '1',
             'department_id' => '9',
-            'name' => 'Bidang 3',
+            'name' => 'Dian Nugraha',
             'email' => 'Bidang_3@gmail.com',
             'password' => bcrypt('123'),
         ]);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Document;
 use App\Models\DocumentMovement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DocumentController extends Controller
 {
@@ -17,15 +18,20 @@ class DocumentController extends Controller
 
         return view('document.index', compact('documents'));
     }
-    public function my_document()
+    public function keluar()
     {
-        $documents = Document::where('created_by', auth()->user->id)->get();
-        return view('document.my', compact('documents'));
+        $documents = Document::where('user_id', Auth::user()->id)->get();
+        return view('document.keluar', compact('documents'));
     }
-    public function waiting_review()
+    public function masuk()
     {
-        $documents = Document::where('created_by', auth()->user->id)->get();
-        return view('document.waiting', compact('documents'));
+        $documents = Document::where('user_id', Auth::user()->id)->get();
+        return view('document.masuk', compact('documents'));
+    }
+    public function tersimpan()
+    {
+        $documents = Document::where('user_id', Auth::user()->id)->get();
+        return view('document.tersimpan', compact('documents'));
     }
 
     /**

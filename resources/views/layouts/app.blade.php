@@ -37,17 +37,17 @@
     @stack('css')
 </head>
 
-<body class="hold-transition sidebar-mini layout-navbar-fixed layout-fixed dark-mode">
+<body class="hold-transition sidebar-mini layout-navbar-fixed layout-fixed sidebar-collapse">
     <div class="wrapper">
 
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand bg-dark navbar-dark text-sm">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link text-warning" data-widget="pushmenu" href="#" role="button"><i
                             class="fas fa-bars"></i></a>
-                </li>
+                </li> --}}
                 {{-- <li class="nav-item d-none d-sm-inline-block">
                     <a href="{{ route('landing') }}" target="_blank" class="nav-link">Home</a>
                 </li> --}}
@@ -55,7 +55,7 @@
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-                <li class="text-warning"><strong style="font-size: 18px">PSDMBP</strong> Document Tracker</li>
+                <li><strong class="text-warning" style="font-size: 18px">PSDMBP</strong> Document Tracker</li>
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -101,62 +101,47 @@
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fa-solid fa-file-contract"></i>
                                 <p>
-                                    Document
+                                    Dokumen
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('document.index') }}" class="nav-link">
+                                    <a href="{{ route('document.masuk') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>All Document</p>
+                                        <p style="font-size: 14px">Dokumen Masuk
+                                            <span class="badge badge-info right">0</span>
+                                        </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('document.my') }}" class="nav-link">
+                                    <a href="{{ route('document.keluar') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>My Document</p>
+                                        <p style="font-size: 14px"> Dokumen Keluar
+                                            <span class="badge badge-info right">0</span>
+                                        </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('document.waiting') }}" class="nav-link">
+                                    <a href="{{ route('document.tersimpan') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         @php
                                             $count = App\Models\Document::where('status', 'waiting')->count();
                                         @endphp
 
-                                        <p>
-                                            Waiting Review
+                                        <p style="font-size: 14px">
+                                            Dokumen Tersimpan
                                             <span class="badge badge-info right">{{ $count }}</span>
                                         </p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-
-                        {{-- Admin Menu --}}
-                        <li class="nav-header mt-3">Admin Menu</li>
                         <li class="nav-item">
-                            <a href="{{ route('user.index') }}" class="nav-link">
-                                <i class="nav-icon fa-regular fa-user"></i>
+                            <a href="{{ route('history.index') }}" class="nav-link">
+                                <i class="nav-icon fa-solid fa-clock-rotate-left"></i>
                                 <p>
-                                    User
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('department.index') }}" class="nav-link">
-                                <i class="nav-icon fa-regular fa-building"></i>
-                                <p>
-                                    Department
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('position.index') }}" class="nav-link">
-                                <i class="nav-icon fa-solid fa-briefcase"></i>
-                                <p>
-                                    Position
+                                    History
                                 </p>
                             </a>
                         </li>
@@ -168,31 +153,69 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-header mt-3">Support</li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fa-solid fa-book"></i>
-                                <p>
-                                    Manual Book
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fa-solid fa-phone"></i>
-                                <p>
-                                    Call Center
-                                </p>
-                            </a>
-                        </li>
+                        @auth
+                            @if (auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
+                                {{-- Admin Menu --}}
+                                <li class="nav-header mt-3">Admin Menu</li>
+                                <li class="nav-item">
+                                    <a href="{{ route('user.index') }}" class="nav-link">
+                                        <i class="nav-icon fa-regular fa-user"></i>
+                                        <p>
+                                            User
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('department.index') }}" class="nav-link">
+                                        <i class="nav-icon fa-regular fa-building"></i>
+                                        <p>
+                                            Department
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('position.index') }}" class="nav-link">
+                                        <i class="nav-icon fa-solid fa-briefcase"></i>
+                                        <p>
+                                            Position
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('tag.index') }}" class="nav-link">
+                                        <i class="nav-icon fa-solid fa-tags"></i>
+                                        <p>
+                                            Tag RFID
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-header mt-3">Support</li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fa-solid fa-book"></i>
+                                        <p>
+                                            Manual Book
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fa-solid fa-phone"></i>
+                                        <p>
+                                            Call Center
+                                        </p>
+                                    </a>
+                                </li>
+                            @endif
+                        @endauth
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
             </div>
             <div class="sidebar-custom border-dark text-center">
-                <a class="btn btn-danger rounded-partner" href="{{ route('logout') }}"
+                <a class="btn btn-sm btn-danger rounded-partner" href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="fa-solid fa-power-off"></i> Logout
+                    <i class="fa-solid fa-power-off"></i>
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
