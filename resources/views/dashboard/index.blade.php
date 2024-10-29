@@ -47,7 +47,7 @@
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href="{{ route('document.index') }}" class="small-box-footer bg-warning">Kotak Masuk</a>
+                        <a href="{{ route('document.masuk') }}" class="small-box-footer bg-warning">Kotak Masuk</a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -62,7 +62,7 @@
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href="{{ route('document.index') }}" class="small-box-footer bg-warning">Kotak Keluar</a>
+                        <a href="{{ route('document.keluar') }}" class="small-box-footer bg-warning">Kotak Keluar</a>
                     </div>
                 </div>
                 <!-- ./col -->
