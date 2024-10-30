@@ -55,7 +55,7 @@
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-                <li><strong class="text-warning" style="font-size: 18px">PSDMBP</strong> Document Tracker</li>
+                <li><strong class="text-warning" style="font-size: 18px"></strong> Document Tracker</li>
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -64,9 +64,9 @@
         <aside class="main-sidebar main-sidebar-custom sidebar-dark-warning elevation-4">
             <!-- Brand Logo -->
             <a href="{{ route('dashboard') }}" class="brand-link">
-                <img src="{{ asset('assets/img/logo/PSDMBP.png') }}" alt="AdminL Logo"
-                    class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-bold text-warning">PSDMBP</span>
+                <img src="{{ asset('assets/img/logo/PSDMBP.png') }}" alt="Logo" class="brand-image"
+                    style="opacity: .8;width: 45px">
+                <span class="brand-text font-weight-bold text-white">Partnership</span>
             </a>
 
             <!-- Sidebar -->
