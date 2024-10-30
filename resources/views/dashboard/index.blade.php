@@ -28,7 +28,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-3 col-4 text-center">
+                <div class="col-lg-3 col-12 text-center">
                     <a href="{{ route('document.masuk') }}">
                         <div class="info-box bg-black">
                             <span class="info-box-icon"><i class="fa-solid fa-envelope-open-text"></i></span>
@@ -41,7 +41,7 @@
                     </a>
                 </div>
                 <!-- ./col -->
-                <div class="col-lg-3 col-4 text-center">
+                <div class="col-lg-3 col-12 text-center">
                     <a href="{{ route('document.keluar') }}">
                         <div class="info-box bg-black">
                             <span class="info-box-icon"><i class="fa-solid fa-envelope-open"></i></span>
@@ -54,7 +54,7 @@
                     </a>
                 </div>
                 <!-- ./col -->
-                <div class="col-lg-3 col-4 text-center">
+                <div class="col-lg-3 col-12 text-center">
                     <a href="{{ route('document.tersimpan') }}">
                         <div class="info-box bg-black">
                             <span class="info-box-icon"><i class="fa-solid fa-envelope-circle-check"></i></span>

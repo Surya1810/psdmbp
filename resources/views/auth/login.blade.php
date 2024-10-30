@@ -32,7 +32,7 @@
                 <div class="d-flex align-items-center justify-content-center" style="height: 100svh;">
                     <div class="col-lg-4">
                         <div class="d-flex justify-content-center mb-4">
-                            <img src="{{ asset('assets/img/logo/PSDMBP.png') }}" alt="Logo PSDMBP" width="25%">
+                            <img src="{{ asset('assets/img/logo/dark.png') }}" alt="Logo PSDMBP" width="25%">
                         </div>
                         <div class="card p-3 border-0 shadow rounded-4">
                             <div class="card-body">
