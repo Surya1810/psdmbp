@@ -28,49 +28,143 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-4 col-12 text-center">
-                    <!-- small box -->
-                    <div class="small-box bg-warning">
-                        <div class="inner">
-                            <h3>Buat Surat</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-6 text-center">
-                    <!-- small box -->
-                    <div class="small-box bg-black">
-                        <div class="inner">
-                            <h3><i style="font" class="fa-solid fa-envelope-open-text"></i></h3>
+                <div class="col-lg-3 col-4 text-center">
+                    <a href="{{ route('document.masuk') }}">
+                        <div class="info-box bg-black">
+                            <span class="info-box-icon"><i class="fa-solid fa-envelope-open-text"></i></span>
 
-                            {{ $count_document }}
+                            <div class="info-box-content">
+                                <span class="info-box-text">Kotak Masuk</span>
+                                <span class="info-box-number">1</span>
+                            </div>
                         </div>
-                        <div class="icon">
-                            <i class="ion ion-bag"></i>
-                        </div>
-                        <a href="{{ route('document.masuk') }}" class="small-box-footer bg-warning">Kotak Masuk</a>
-                    </div>
+                    </a>
                 </div>
                 <!-- ./col -->
-                <div class="col-lg-4 col-6 text-center">
-                    <!-- small box -->
-                    <div class="small-box bg-black">
-                        <div class="inner">
-                            <h3>{{ $count_document }}</h3>
+                <div class="col-lg-3 col-4 text-center">
+                    <a href="{{ route('document.keluar') }}">
+                        <div class="info-box bg-black">
+                            <span class="info-box-icon"><i class="fa-solid fa-envelope-open"></i></span>
 
-                            <i class="fa-solid fa-envelope-open"></i>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Kotak Keluar</span>
+                                <span class="info-box-number">1</span>
+                            </div>
                         </div>
-                        <div class="icon">
-                            <i class="ion ion-bag"></i>
-                        </div>
-                        <a href="{{ route('document.keluar') }}" class="small-box-footer bg-warning">Kotak Keluar</a>
-                    </div>
+                    </a>
                 </div>
                 <!-- ./col -->
+                <div class="col-lg-3 col-4 text-center">
+                    <a href="{{ route('document.tersimpan') }}">
+                        <div class="info-box bg-black">
+                            <span class="info-box-icon"><i class="fa-solid fa-envelope-circle-check"></i></span>
 
+                            <div class="info-box-content">
+                                <span class="info-box-text">Kotak Tersimpan</span>
+                                <span class="info-box-number">1</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-12 text-center">
+                    <a type="button" data-toggle="modal" data-target="#addDocument" class="w-100">
+                        <div class="info-box bg-warning">
+                            <span class="info-box-icon"><i class="fa-solid fa-pencil-alt"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text">Buat Dokumen</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
                 <!-- ./col -->
             </div>
         </div>
     </section>
+
+    <!-- Modal Add Document-->
+    <div class="modal fade" id="addDocument" aria-labelledby="addDocumentLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addDocumentLabel">Buat Dokumen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('dokumen.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="rfid" class="mb-0 form-label col-form-label-sm">PIC</label>
+                            <select class="form-control select2 select2-warning" data-dropdown-css-class="select2-warning"
+                                style="width: 100%;" name="rfid" id="rfid">
+                                <option></option>
+                                @foreach ($rfids as $data)
+                                    <option value="{{ $data->id }}" @selected(old('rfid') == $data->id)>
+                                        {{ $data->number }}</option>
+                                @endforeach
+                            </select>
+                            @error('rfid')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            <label for="nomor" class="mb-0 form-label col-form-label-sm">Nomor</label>
+                            <input type="text" class="form-control @error('nomor') is-invalid @enderror" id="nomor"
+                                name="nomor" placeholder="Nomor Dokumen" value="{{ old('nomor') }}">
+                            @error('nomor')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            <label for="perihal" class="mb-0 form-label col-form-label-sm">Perihal</label>
+                            <input type="text" class="form-control @error('perihal') is-invalid @enderror" id="perihal"
+                                name="perihal" placeholder="Perihal Dokumen" value="{{ old('perihal') }}">
+                            @error('perihal')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            <label for="tujuan_berikutnya" class="mb-0 form-label col-form-label-sm">Tujuan
+                                Berikutnya</label>
+                            <select class="form-control select2 select2-warning" data-dropdown-css-class="select2-warning"
+                                style="width: 100%;" name="tujuan_berikutnya" id="tujuan_berikutnya">
+                                <option></option>
+                                @foreach ($users as $data)
+                                    <option value="{{ $data->id }}" @selected(old('tujuan_berikutnya') == $data->id)>
+                                        {{ $data->name }} - {{ $data->department->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('tujuan_berikutnya')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            <label for="tujuan_akhir" class="mb-0 form-label col-form-label-sm">Tujuan Akhir</label>
+                            <select class="form-control select2 select2-warning" data-dropdown-css-class="select2-warning"
+                                style="width: 100%;" name="tujuan_akhir" id="tujuan_akhir">
+                                <option></option>
+                                @foreach ($users as $data)
+                                    <option value="{{ $data->id }}" @selected(old('tujuan_akhir') == $data->id)>
+                                        {{ $data->name }} - {{ $data->department->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('tujuan_akhir')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-warning rounded-partner">Buat</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('scripts')
@@ -90,6 +184,22 @@
 
     <script type="text/javascript">
         $(function() {
+            //Initialize Select2 Elements
+            $('#tujuan_berikutnya').select2({
+                placeholder: "Pilih Tujuan",
+                allowClear: true,
+            })
+            $('#tujuan_akhir').select2({
+                placeholder: "Pilih Tujuan",
+                allowClear: true,
+            })
+            $('#rfid').select2({
+                placeholder: "Pilih RFID Tag",
+                allowClear: true,
+            })
+        })
+
+        $(function() {
             $('#DocumentTable').DataTable({
                 "paging": true,
                 'processing': true,
@@ -108,28 +218,5 @@
                 // }]
             });
         });
-
-        function deleteDocument(id) {
-            Swal.fire({
-                title: 'Are you sure?',
-                icon: 'warning',
-                showCancelButton: false,
-                confirmButtonColor: '#d33',
-                confirmButtonText: 'Delete'
-            }).then((result) => {
-                if (result.value) {
-                    event.preventDefault();
-                    document.getElementById('delete-form-' + id).submit();
-                } else if (
-                    result.dismiss === swal.DismissReason.cancel
-                ) {
-                    swal(
-                        'Cancelled',
-                        'Your data is safe !',
-                        'error'
-                    )
-                }
-            })
-        }
     </script>
 @endpush

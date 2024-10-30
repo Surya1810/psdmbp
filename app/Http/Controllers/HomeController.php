@@ -27,11 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $count_tags = Tag::all()->count();
-        $count_user = User::all()->count();
-        $count_waiting = Document::all()->count();
-        $count_document = Document::all()->count();
+        $users = User::where('role_id', '!=', 1)->get();
+        $rfids = Tag::where('status', 'Available')->get();
 
-        return view('dashboard.index', compact('count_tags', 'count_user', 'count_document', 'count_waiting'));
+        return view('dashboard.index', compact('rfids', 'users'));
     }
 }

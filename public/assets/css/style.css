@@ -58,7 +58,7 @@ body::-webkit-scrollbar {
 
 /* Basic form control customization */
 .form-control {
-    border-color: #ffc107; /* Yellow border */
+    /* border-color: #ffc107; */
     box-shadow: none; /* Remove default shadow */
 }
 

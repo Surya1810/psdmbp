@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Document;
 use App\Models\DocumentMovement;
+use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,8 +17,10 @@ class DocumentController extends Controller
     public function index()
     {
         $documents = Document::all();
+        $users = User::where('role_id', '!=', 1)->get();
+        $rfids = Tag::where('status', 'Available')->get();
 
-        return view('document.index', compact('documents'));
+        return view('document.index', compact('documents', 'rfids', 'users'));
     }
     public function keluar()
     {
@@ -26,7 +30,9 @@ class DocumentController extends Controller
     public function masuk()
     {
         $documents = Document::where('user_id', Auth::user()->id)->get();
-        return view('document.masuk', compact('documents'));
+        $users = User::where('role_id', '!=', 1)->get();
+
+        return view('document.masuk', compact('documents', 'users'));
     }
     public function tersimpan()
     {

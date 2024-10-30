@@ -44,10 +44,10 @@
         <nav class="main-header navbar navbar-expand bg-dark navbar-dark text-sm">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
-                {{-- <li class="nav-item">
+                <li class="nav-item d-block d-md-none">
                     <a class="nav-link text-warning" data-widget="pushmenu" href="#" role="button"><i
                             class="fas fa-bars"></i></a>
-                </li> --}}
+                </li>
                 {{-- <li class="nav-item d-none d-sm-inline-block">
                     <a href="{{ route('landing') }}" target="_blank" class="nav-link">Home</a>
                 </li> --}}
@@ -109,7 +109,7 @@
                                 <li class="nav-item">
                                     <a href="{{ route('document.masuk') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p style="font-size: 14px">Dokumen Masuk
+                                        <p style="font-size: 12px">Dokumen Masuk
                                             <span class="badge badge-info right">0</span>
                                         </p>
                                     </a>
@@ -117,7 +117,7 @@
                                 <li class="nav-item">
                                     <a href="{{ route('document.keluar') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p style="font-size: 14px"> Dokumen Keluar
+                                        <p style="font-size: 12px"> Dokumen Keluar
                                             <span class="badge badge-info right">0</span>
                                         </p>
                                     </a>
@@ -129,7 +129,7 @@
                                             $count = App\Models\Document::where('status', 'waiting')->count();
                                         @endphp
 
-                                        <p style="font-size: 14px">
+                                        <p style="font-size: 12px">
                                             Dokumen Tersimpan
                                             <span class="badge badge-info right">{{ $count }}</span>
                                         </p>

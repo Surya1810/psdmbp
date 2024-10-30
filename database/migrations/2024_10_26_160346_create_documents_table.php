@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('number');
             $table->string('name');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('status')->default('Created');
+            $table->enum('status', ['masuk', 'keluar', 'selesai'])->default('keluar');
             $table->foreignId('tag_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

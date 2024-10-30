@@ -46,19 +46,16 @@
                                 <thead class="table-light bg-warning">
                                     <tr>
                                         <th>
-                                            RFID Number
+                                            RFID
                                         </th>
                                         <th>
                                             Nomor
                                         </th>
                                         <th>
-                                            Nama
+                                            Perihal
                                         </th>
                                         <th>
                                             Dibuat Oleh
-                                        </th>
-                                        <th>
-                                            Departmen
                                         </th>
                                         <th>
                                             Status
@@ -74,8 +71,10 @@
                                             <td>{{ $data->tag->number }}</td>
                                             <td>{{ $data->number }}</td>
                                             <td>{{ $data->name }}</td>
-                                            <td>{{ $data->created_by->name }}</td>
-                                            <td>{{ $data->created_by->department->name }}</td>
+                                            <td>{{ $data->created_by->name }} <br>
+                                                <strong>{{ $data->created_by->position->name }}
+                                                    {{ $data->created_by->department->name }}</strong>
+                                            </td>
                                             <td>{{ $data->status }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-sm btn-success rounded-partner"
@@ -101,20 +100,27 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addTujuanLabel">Add New Tujuan</h5>
+                        <h5 class="modal-title" id="addTujuanLabel">Tujuan Berikutnya</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ route('document.update', $data->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('dokumen.update', $data->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="name" class="mb-0 form-label col-form-label-sm">Name</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                    id="name" name="name" placeholder="Enter Tujuan name"
-                                    value="{{ old('name') }}">
-                                @error('name')
+                                <label for="tujuan_berikutnya" class="mb-0 form-label col-form-label-sm">Tujuan
+                                    Berikutnya</label>
+                                <select class="form-control select2 select2-warning"
+                                    data-dropdown-css-class="select2-warning" style="width: 100%;" name="tujuan_berikutnya"
+                                    id="tujuan_berikutnya">
+                                    <option></option>
+                                    @foreach ($users as $data)
+                                        <option value="{{ $data->id }}" @selected(old('tujuan_berikutnya') == $data->id)>
+                                            {{ $data->name }} - {{ $data->department->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('tujuan_berikutnya')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -148,6 +154,14 @@
 
     <script type="text/javascript">
         $(function() {
+            $(function() {
+                //Initialize Select2 Elements
+                $('#tujuan_berikutnya').select2({
+                    placeholder: "Pilih Tujuan",
+                    allowClear: true,
+                })
+            })
+
             $('#TujuanTable').DataTable({
                 "paging": true,
                 'processing': true,

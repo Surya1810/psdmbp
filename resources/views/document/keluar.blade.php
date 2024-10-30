@@ -46,26 +46,33 @@
                                 <thead class="table-light bg-warning">
                                     <tr>
                                         <th>
-                                            Number
+                                            RFID
                                         </th>
                                         <th>
-                                            Name
+                                            Nomor
+                                        </th>
+                                        <th>
+                                            Perihal
+                                        </th>
+                                        <th>
+                                            Dibuat Oleh
                                         </th>
                                         <th>
                                             Status
-                                        </th>
-                                        <th>
-                                            RFID Number
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($documents as $data)
                                         <tr>
+                                            <td>{{ $data->tag->number }}</td>
                                             <td>{{ $data->number }}</td>
                                             <td>{{ $data->name }}</td>
+                                            <td>{{ $data->created_by->name }} <br>
+                                                <strong>{{ $data->created_by->position->name }}
+                                                    {{ $data->created_by->department->name }}</strong>
+                                            </td>
                                             <td>{{ $data->status }}</td>
-                                            <td>{{ $data->tag->number }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
